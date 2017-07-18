@@ -1,0 +1,175 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+.container{
+  width: 100%;
+}
+
+.mainHead{
+  height: 100px;
+  background-color: #292829;
+  position: relative;
+}
+
+.title{
+  color: #6EB43F;
+  font-size: 30px;
+  margin-top: 10px;
+  position: relative;
+}
+
+.titleSlogan{
+  color: white;
+  font-size: 20px;
+  margin-top: -10px;
+  position: relative;
+}
+
+.mainBody{
+  background-color: #B4AFAC;
+  height: 604px;
+  position: ;
+}
+
+.dealerTitle{
+  height:25px;
+  color: white;
+  font-size: 18px;
+  width: 100%;
+  text-align: center;
+}
+
+.dealerCards{
+  background-color: grey;
+  height:250px;
+}
+
+.dealerCard {
+  height: 200px;
+  width:150px;
+  position: relative;
+  top:30px;
+  display: inline-block;
+  margin-left: 12px;
+  left: 380px;
+}
+
+
+.gameMessage{
+  height:25px;
+  color: #6EB43F;
+  font-size: 18px;
+  width: 100%;
+  background-color: #292829;
+  display: inline-block;
+}
+
+.amountInPlay{
+  display: inline-block;
+  width: 20%;
+}
+
+.gameMessageText{
+  margin-left: 25%;
+  display: inline-block;
+}
+
+.userTitle{
+  height:25px;
+  color: white;
+  font-size: 18px;
+  width: 100%;
+  text-align: center;
+}
+
+.playerOptions{
+  background-color: #292829;
+  height:304px;
+}
+
+.balanceAmount{
+  height: 70px;
+  background-color: #292829;
+  color:white;
+}
+
+.balanceText{
+  color:white;
+  font-size: 20px;
+  padding-top: 20px;
+
+}
+
+.decreaseBet{
+  height:50px;
+  background-color: white;
+  font-size: 20px;
+  color: black;
+  border: none;
+}
+
+.decreaseBet:hover {
+    background-color: darkgrey;
+}
+
+.betAmount{
+  height: 50px;
+  background-color: lightgrey;
+
+}
+
+.betText{
+  font-size: 18px;
+  padding-top: 10px;
+}
+
+.increaseBet{
+  height:50px;
+  background-color: white;
+  font-size: 20px;
+  color: black;
+  border: none;
+}
+
+.increaseBet:hover {
+    background-color: darkgrey;
+}
+
+.btn-group button {
+    background-color: #6EB43F;
+    border: 1px solid black;
+    color: white;
+    cursor: pointer;
+    width: 109%;
+    display: block;
+    height:40px;
+    margin-left: -15px;
+
+}
+
+.btn-group button:not(:last-child) {
+    border-bottom: none; /* Prevent double borders */
+}
+
+/* Add a background color on hover */
+.btn-group button:hover {
+    background-color: #3e8e41;
+}
+
+.playerCards{
+  background-color: grey;
+  height: 304px;
+}
+
+.playerCard {
+  height: 200px;
+  width:150px;
+  position: relative;
+  display: inline-block;
+  margin-left: 12px;
+  left: 20px;
+  top: 50px;
+}
