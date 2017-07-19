@@ -17,6 +17,8 @@
 
   <!-- Latest compiled and minified JavaScript -->
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+  <!-- Font -->
+  <link href="https://fonts.googleapis.com/css?family=Quicksand:300" rel="stylesheet">
 
   <!-- Linking css page -->
   <link rel="stylesheet" href="../css/main.css">
@@ -40,12 +42,14 @@
           </div>
           <div class="col-md-12 gameMessage">
             <p class ="amountInPlay"></p>
-            <p class = "gameMessageText"></p>
+            <p class ="playerCardTotal messageBar"></p>
+            <p class ="dealerCardTotal messageBar"></p>
+            <p class = "gameMessageText messageBar"></p>
           </div>
           <div class="col-md-12 userTitle">
             <span>User</span>
           </div>
-          <div class="col-md-3 playerOptions">
+          <div class="col-md-2 playerOptions">
             <section class = "row">
               <div class = "col-md-12 balanceAmount">
                 <p class = "balanceText"></p>
@@ -66,12 +70,12 @@
               <div class="col-md-12 btn-group">
                 <button class = "betButton">Bet</button>
                 <button class = "hitButton">Hit</button>
-                <button class = "stayButton">Stay</button>
                 <button class = "doubleDownButton">Double Down</button>
+                <button class = "stayButton">Stay</button>
               </div>
             </section>
           </div>
-          <div class="col-md-9 playerCards">
+          <div class="col-md-10 playerCards">
           </div>
         </section>
       </div>

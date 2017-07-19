@@ -2,7 +2,7 @@ var balance = 500;
 var betAmount = 100;
 var potValue = 0;
 var cardNumValue = 0;
-
+var betAmount = 100;
 
 var values = {
   "2": 2,
@@ -23,14 +23,29 @@ var values = {
 $(document).ready(function() {
   console.log("ready!");
 
-
   $(".balanceText").text("Current Balance: $" + balance);
   $(".betText").text("Bet Amount: $" + betAmount);
-  $(".gameMessageText").text("SELECT YOUR BET");
+  $(".gameMessageText").text("Select Your Bet");
   $(".amountInPlay").text("Amount Bet: $" + potValue);
+  $(".playerCardTotal").text("User Value: 0")
+  $(".dealerCardTotal").text("Dealer Value: 0")
   disableButton($(".hitButton"));
   disableButton($(".stayButton"));
   disableButton($(".doubleDownButton"));
+
+  $(".increaseBet").click(function() {
+    if (betAmount < balance) {
+      betAmount += 10;
+      $(".betText").text("Bet Amount: $" + betAmount);
+    }
+  })
+
+  $(".decreaseBet").click(function() {
+    if (betAmount > 10) {
+      betAmount -= 10;
+      $(".betText").text("Bet Amount: $" + betAmount);
+    }
+  })
 
 
   function disableButton(theButton) {
@@ -66,7 +81,7 @@ $(document).ready(function() {
     enableButton($(".stayButton"));
     enableButton($(".doubleDownButton"));
     disableButton($(".betButton"));
-    $(".gameMessageText").text("HIT, STAY, OR DOUBLE DOWN");
+    $(".gameMessageText").text("Hit, Stay, OR Double Down");
     potValue += betAmount;
     $(".amountInPlay").text("Amount Bet: $" + potValue);
     balance -= betAmount;
@@ -91,6 +106,7 @@ $(document).ready(function() {
     $('<img />').attr({
       'src': "../images/backOfCard.jpg",
       'class': 'dealerCard',
+      'id': 'dealerBackCard'
     }).appendTo('.dealerCards');
   }
 
@@ -111,9 +127,10 @@ $(document).ready(function() {
     $(".dealerCard").remove();
     potValue = 0;
     $(".amountInPlay").text("Amount Bet: $" + potValue);
+    
   }
 
-  function handleDoubleDownClick(){
+  function handleDoubleDownClick() {
     balance -= potValue;
     potValue *= 2;
     $(".amountInPlay").text("Amount Bet: $" + potValue);
@@ -124,6 +141,15 @@ $(document).ready(function() {
     enableButton($(".betButton"));
   }
 
+
+
+  // function isEndOfGame(){
+  //   if(balance <= 0){
+  //     $(".gameMessageText").text("You lost all your money, start again");
+  //     balance = 500;
+  //   }
+  // }
+
   $(window).load(function() {
     $(".betButton").click(function() {
       startNewHand();
@@ -132,9 +158,36 @@ $(document).ready(function() {
       var playerValuesArr = [];
       var dealerValuesArr = [];
 
+      function checkWin() {
+        if (playerHandValue > 21) {
+          $(".gameMessageText").text("BUST");
+          disableButton($(".hitButton"));
+          disableButton($(".stayButton"));
+          disableButton($(".doubleDownButton"));
+          enableButton($(".betButton"));
+        } else if (dealerHandValue > playerHandValue && dealerHandValue < 22) {
+          $(".gameMessageText").text("You Lose");
+        } else if (dealerHandValue === playerHandValue){
+          $(".gameMessageText").text("Push");
+        } else if (dealerHandValue < playerHandValue && dealerHandValue > 16) {
+          $(".gameMessageText").text("You Win!");
+          balance += potValue;
+          $(".balanceText").text("Current Balance: $" + balance);
+        } else if (dealerHandValue > 21) {
+          $(".gameMessageText").text("Dealer Bust. You Win!");
+          balance += potValue;
+          $(".balanceText").text("Current Balance: $" + balance);
+        }
+      }
+
       $.get("https://deckofcardsapi.com/api/deck/new/shuffle/?deck_count=1", function(data) {
+        $(".hitButton").unbind('click');
+        $(".doubleDownButton").unbind('click');
         var deckID = data["deck_id"]
         handleBetButton();
+        if (betAmount > balance) {
+          $(".betText").text("Bet Amount: $" + balance);
+        }
 
         function dealPlayerCards(cardsDealt) {
           for (var i = 0; i < cardsDealt.length; i++) {
@@ -144,6 +197,7 @@ $(document).ready(function() {
             cardNumValue = values[cardValue];
             playerHandValue += cardNumValue;
             playerValuesArr.push(cardNumValue);
+            $(".playerCardTotal").text("User Value: " + playerHandValue);
           }
         }
 
@@ -152,7 +206,10 @@ $(document).ready(function() {
             var cardValue = cardsDealt[i]["value"];
             var cardImage = cardsDealt[i]["image"];
             handleNewDealerCardImage(cardImage);
+            cardNumValue = values[cardValue];
+            dealerHandValue += cardNumValue;
             dealerValuesArr.push(cardNumValue);
+            $(".dealerCardTotal").text("Dealer Value: " + dealerHandValue);
           }
         }
 
@@ -163,6 +220,7 @@ $(document).ready(function() {
               if (aceIndex > -1) {
                 playerValuesArr[aceIndex] = 1;
                 playerHandValue -= 10;
+                $(".playerCardTotal").text("User Value: " + playerHandValue);
               }
             }
             if (playerHandValue > 21) {
@@ -171,13 +229,35 @@ $(document).ready(function() {
               disableButton($(".stayButton"));
               disableButton($(".doubleDownButton"));
               enableButton($(".betButton"));
-              $(".hitButton").unbind('click');
             }
           }
         }
 
-        //Player
+        function handleNewDealerCard() {
+          for (var i = 0; i < dealerValuesArr.length; i++) {
+            if (dealerHandValue > 21) {
+              var aceIndex = dealerValuesArr.lastIndexOf(11);
+              if (aceIndex > -1) {
+                dealerValuesArr[aceIndex] = 1;
+                dealerHandValue -= 10;
+                $(".dealerCardTotal").text("User Value: " + dealerHandValue);
+              }
+            }
+            checkWin()
+          }
+        }
+
+
+
         $.get("https://deckofcardsapi.com/api/deck/" + deckID + "/draw/?count=2", function(twoCards) {
+          $.get("https://deckofcardsapi.com/api/deck/" + deckID + "/draw/?count=1", function(dealerFirstCard) {
+            var oneDealerCardDrawn = dealerFirstCard["cards"];
+            dealDealerCards(oneDealerCardDrawn);
+            createBackCardImage();
+          })
+
+
+
           var twoCardsDrawn = twoCards["cards"];
           dealPlayerCards(twoCardsDrawn);
 
@@ -189,8 +269,6 @@ $(document).ready(function() {
               handleBlackjack();
             }
           }
-
-
 
           $(".hitButton").click(function() {
             $.get("https://deckofcardsapi.com/api/deck/" + deckID + "/draw/?count=1", function(oneCard) {
@@ -209,33 +287,42 @@ $(document).ready(function() {
               dealPlayerCards(doubleDownCard);
               handleNewPlayerCard();
             });
-          });
-        })
 
-        //Dealer
-        $.get("https://deckofcardsapi.com/api/deck/" + deckID + "/draw/?count=1", function(dealerFirstCard) {
-          var oneCardDrawn = dealerFirstCard["cards"];
-          dealDealerCards(oneCardDrawn);
-          createBackCardImage();
+            function giveDealerCards() {
+              if (dealerHandValue < playerHandValue && dealerHandValue < 17) {
+                $.get("https://deckofcardsapi.com/api/deck/" + deckID + "/draw/?count=1", function(newDealerCard) {
+                  $("#dealerBackCard").remove()
+                  var oneDealerCardDrawn = newDealerCard["cards"];
+                  dealDealerCards(oneDealerCardDrawn);
+                  handleNewDealerCard();
+                  giveDealerCards();
+                });
+              } else {
+                checkWin();
+              }
+            }
+            giveDealerCards();
+          })
+
+          $(".stayButton").click(function() {
+            function giveDealerCards() {
+              if (dealerHandValue < playerHandValue && dealerHandValue < 17) {
+                $.get("https://deckofcardsapi.com/api/deck/" + deckID + "/draw/?count=1", function(newDealerCard) {
+                  $("#dealerBackCard").remove()
+                  var oneDealerCardDrawn = newDealerCard["cards"];
+                  dealDealerCards(oneDealerCardDrawn);
+                  handleNewDealerCard();
+                  giveDealerCards();
+                });
+              } else {
+                checkWin();
+              }
+            }
+            giveDealerCards();
+          })
+
         })
-      })
+      });
     });
   });
-
-
-  $(".increaseBet").click(function() {
-    if (betAmount < balance) {
-      betAmount += 10;
-      $(".betText").text("Bet Amount: $" + betAmount);
-    }
-  })
-
-  $(".decreaseBet").click(function() {
-    if (betAmount > 10) {
-      betAmount -= 10;
-      $(".betText").text("Bet Amount: $" + betAmount);
-    }
-  })
-
-
 });

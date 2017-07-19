@@ -16,9 +16,10 @@
 
 .title{
   color: #6EB43F;
-  font-size: 30px;
-  margin-top: 10px;
+  font-size: 40px;
+  margin-top: 5px;
   position: relative;
+  font-family: 'Quicksand', sans-serif;
 }
 
 .titleSlogan{
@@ -26,6 +27,7 @@
   font-size: 20px;
   margin-top: -10px;
   position: relative;
+  font-family: 'Quicksand', sans-serif;
 }
 
 .mainBody{
@@ -40,10 +42,11 @@
   font-size: 18px;
   width: 100%;
   text-align: center;
+  font-family: 'Quicksand', sans-serif;
 }
 
 .dealerCards{
-  background-color: grey;
+  background-color: white;
   height:250px;
 }
 
@@ -54,27 +57,38 @@
   top:30px;
   display: inline-block;
   margin-left: 12px;
-  left: 380px;
+  left: 260px;
 }
 
 
 .gameMessage{
   height:25px;
-  color: #6EB43F;
+  color: white;
   font-size: 18px;
   width: 100%;
   background-color: #292829;
   display: inline-block;
+  font-family: 'Quicksand', sans-serif;
 }
 
 .amountInPlay{
   display: inline-block;
-  width: 20%;
+}
+.messageBar{
+  display: inline-block;
+  margin-left: 15%;
+  position: absolute;
+}
+.gameMessageText{
+  left:60%;
 }
 
-.gameMessageText{
-  margin-left: 25%;
-  display: inline-block;
+.playerCardTotal{
+  left:20%;
+}
+
+.dealerCardTotal{
+  left:40%;
 }
 
 .userTitle{
@@ -83,11 +97,13 @@
   font-size: 18px;
   width: 100%;
   text-align: center;
+  font-family: 'Quicksand', sans-serif;
 }
 
 .playerOptions{
   background-color: #292829;
   height:304px;
+  font-family: 'Quicksand', sans-serif;
 }
 
 .balanceAmount{
@@ -98,14 +114,15 @@
 
 .balanceText{
   color:white;
-  font-size: 20px;
-  padding-top: 20px;
+  font-size: 16px;
+  padding-top: 24px;
+  margin-left: -4%;
 
 }
 
 .decreaseBet{
   height:50px;
-  background-color: white;
+  background-color: #F7F7F7;
   font-size: 20px;
   color: black;
   border: none;
@@ -122,13 +139,15 @@
 }
 
 .betText{
-  font-size: 18px;
-  padding-top: 10px;
+  font-size: 14px;
+  padding-top: 14px;
+  margin-left: -4%;
+
 }
 
 .increaseBet{
   height:50px;
-  background-color: white;
+  background-color: #F7F7F7;
   font-size: 20px;
   color: black;
   border: none;
@@ -143,10 +162,11 @@
     border: 1px solid black;
     color: white;
     cursor: pointer;
-    width: 109%;
+    width: 115%;
     display: block;
     height:40px;
-    margin-left: -15px;
+    margin-left: -16px;
+    font-size: 16px;
 
 }
 
@@ -160,7 +180,7 @@
 }
 
 .playerCards{
-  background-color: grey;
+  background-color: white;
   height: 304px;
 }
 
