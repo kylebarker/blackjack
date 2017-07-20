@@ -10,7 +10,6 @@
 }
 
 .mainHead{
-  height: 100px;
   background-color: #292829;
   position: relative;
 }
@@ -18,27 +17,27 @@
 .title{
   color: #6EB43F;
   font-size: 40px;
-  margin-top: 5px;
+  margin-top: 1vh;
   position: relative;
   font-family: 'Quicksand', sans-serif;
 }
 
 .titleSlogan{
+  padding-left: 1.1%;
   color: white;
   font-size: 20px;
-  margin-top: -10px;
+  margin-top: -3.4vh;
   position: relative;
   font-family: 'Quicksand', sans-serif;
 }
 
 .mainBody{
   background-color: #B4AFAC;
-  height: 604px;
-  position: ;
+  position: relative;
 }
 
 .dealerTitle{
-  height:25px;
+  height:3.5vh;
   color: white;
   font-size: 18px;
   width: 100%;
@@ -48,7 +47,7 @@
 
 .dealerCards{
   background-color: white;
-  height:250px;
+  height:36vh;
 }
 
 .dealerCard {
@@ -63,7 +62,7 @@
 
 
 .gameMessage{
-  height:25px;
+  height:3.6vh;
   color: white;
   font-size: 18px;
   width: 100%;
@@ -93,7 +92,7 @@
 }
 
 .userTitle{
-  height:25px;
+  height:3.6vh;
   color: white;
   font-size: 18px;
   width: 100%;
@@ -103,12 +102,11 @@
 
 .playerOptions{
   background-color: #292829;
-  height:304px;
   font-family: 'Quicksand', sans-serif;
 }
 
 .balanceAmount{
-  height: 70px;
+  height: 8vh;
   background-color: #292829;
   color:white;
 }
@@ -116,13 +114,12 @@
 .balanceText{
   color:white;
   font-size: 16px;
-  padding-top: 24px;
+  padding-top: 2.5vh;
   margin-left: -4%;
-
 }
 
 .decreaseBet{
-  height:50px;
+  height:8vh;
   background-color: #F7F7F7;
   font-size: 20px;
   color: black;
@@ -134,20 +131,20 @@
 }
 
 .betAmount{
-  height: 50px;
+  height: 8vh;
   background-color: lightgrey;
 
 }
 
 .betText{
   font-size: 14px;
-  padding-top: 14px;
+  padding-top: 1.3em;
   margin-left: -4%;
 
 }
 
 .increaseBet{
-  height:50px;
+  height:8vh;
   background-color: #F7F7F7;
   font-size: 20px;
   color: black;
@@ -165,8 +162,8 @@
     cursor: pointer;
     width: 115%;
     display: block;
-    height:40px;
-    margin-left: -16px;
+    height:6.45vh;
+    margin-left: -8%;
     font-size: 16px;
 }
 
@@ -181,7 +178,7 @@
 
 .playerCards{
   background-color: white;
-  height: 304px;
+  height: 41.7vh;
 }
 
 .playerCard {

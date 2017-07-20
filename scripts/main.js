@@ -71,7 +71,7 @@ $(document).ready(function() {
     if (betAmount < balance) {
       betAmount += 10;
       $(".betText").text("Bet Amount: $" + betAmount);
-    } 
+    }
   })
 
   $(".decreaseBet").click(function() {
@@ -190,12 +190,13 @@ $(document).ready(function() {
 
       $.get("https://deckofcardsapi.com/api/deck/new/shuffle/?deck_count=1", function(data) {
         $(".hitButton").unbind('click');
+        $(".stayButton").unbind('click');
         $(".doubleDownButton").unbind('click');
         var deckID = data["deck_id"]
 
 
         if (betAmount > balance) {
-          betAmount === balance;
+          betAmount = balance;
           $(".betText").text("Bet Amount: $" + balance);
         }
 
@@ -233,8 +234,8 @@ $(document).ready(function() {
                 $(".playerCardTotal").text("User Value: " + playerHandValue);
               }
             }
-          checkWin()
           }
+          checkWin()
         }
 
         function handleNewDealerCard() {
