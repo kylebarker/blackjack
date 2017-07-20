@@ -4,7 +4,6 @@
   padding: 0;
 }
 
-
 .container{
   width: 100%;
 }
@@ -50,11 +49,38 @@
   height:36vh;
 }
 
+.gameOverButton{
+  background-color: #292829;
+  color: white;
+  width: 12%;
+  font-size: 26px;
+  padding-left: 1%;
+  padding-right: 1%;
+  padding-top: .7%;
+  height: 20vh;
+  margin-top: -21vh;
+  margin-left: 1.5%;
+  border-radius: 5%;
+  font-family: 'Quicksand', sans-serif;
+  cursor: pointer;
+}
+
+.gameOverButton:not(:last-child) {
+    border-bottom: none; /* Prevent double borders */
+}
+
+/* Add a background color on hover */
+.gameOverButton:hover {
+    background-color: #6EB43F;
+
+}
+
+
 .dealerCard {
   height: 200px;
   width:150px;
   position: relative;
-  top:30px;
+  top:3.5vh;
   display: inline-block;
   margin-left: 12px;
   left: 260px;
@@ -71,24 +97,30 @@
   font-family: 'Quicksand', sans-serif;
 }
 
-.amountInPlay{
-  display: inline-block;
-}
 .messageBar{
   display: inline-block;
   margin-left: 15%;
   position: absolute;
 }
-.gameMessageText{
-  left:60%;
+
+.amountInPlay{
+  display: inline-block;
+  margin-top: 0.2vh;
 }
 
 .playerCardTotal{
-  left:20%;
+  left:15%;
+  margin-top: 0.2vh;
 }
 
 .dealerCardTotal{
-  left:40%;
+  left:45%;
+  margin-top: 0.2vh;
+}
+
+.gameMessageText{
+  left:65%;
+  margin-top: 0.2vh;
 }
 
 .userTitle{
@@ -133,14 +165,12 @@
 .betAmount{
   height: 8vh;
   background-color: lightgrey;
-
 }
 
 .betText{
   font-size: 14px;
-  padding-top: 1.3em;
+  padding-top: 2.7vh;
   margin-left: -4%;
-
 }
 
 .increaseBet{

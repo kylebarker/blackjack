@@ -25,7 +25,7 @@ $(document).ready(function() {
   $(".amountInPlay").text("Amount Bet: $" + potValue);
   $(".balanceText").text("Current Balance: $" + balance);
   $(".betText").text("Bet Amount: $" + betAmount);
-  $(".gameMessageText").text("Select Your Bet");
+  $(".gameMessageText").text("Place your bet");
   $(".playerCardTotal").text("User Value: 0")
   $(".dealerCardTotal").text("Dealer Value: 0")
   disableButton($(".hitButton"));
@@ -115,8 +115,31 @@ $(document).ready(function() {
 
   function isEndOfGame(){
     if(balance === 0){
-      $(".gameMessageText").text("You lost all your money, here's $500");
-      balance = 500;
+      $(".gameMessageText").text("You chose...poorly");
+      $(".dealerCards").append('<div class = "gameOverButton">Game Over. Click to play again</div>')
+      disableButton($(".hitButton"));
+      disableButton($(".stayButton"));
+      disableButton($(".doubleDownButton"));
+      disableButton($(".betButton"))
+
+      $(".gameOverButton").click(function() {
+        enableButton($(".betButton"));
+        $(".gameOverButton").remove();
+        removeCards();
+        balance = 500;
+        $(".balanceText").text("Current Balance: $" + balance);
+        betAmount = 100;
+        $(".betText").text("Bet Amount: $" + betAmount);
+        $(".playerCardTotal").text("User Value: 0")
+        $(".dealerCardTotal").text("Dealer Value: 0")
+        $(".gameMessageText").text("Place your bet");
+      })
+    }
+  }
+
+  function cannotDoubleDown(){
+    if(balance < potValue){
+      disableButton($(".doubleDownButton"));
     }
   }
 
@@ -125,11 +148,15 @@ $(document).ready(function() {
     enableButton($(".stayButton"));
     enableButton($(".doubleDownButton"));
     disableButton($(".betButton"));
-    $(".gameMessageText").text("Hit, Stay, OR Double Down");
+    $(".gameMessageText").text("Hit, Stay, or Double Down");
     potValue += betAmount;
     $(".amountInPlay").text("Amount Bet: $" + potValue);
     balance -= betAmount;
     $(".balanceText").text("Current Balance: $" + balance);
+
+    if(balance < potValue){
+      $(".gameMessageText").text("Hit or Stay");
+    }
   }
 
   function handleBlackjack() {
@@ -158,7 +185,7 @@ $(document).ready(function() {
 
       function checkWin() {
         if (playerHandValue > 21) {
-          $(".gameMessageText").text("BUST");
+          $(".gameMessageText").text("Bust");
           resetPotValue();
           enableOnlyBet();
           isEndOfGame();
@@ -193,7 +220,7 @@ $(document).ready(function() {
         $(".stayButton").unbind('click');
         $(".doubleDownButton").unbind('click');
         var deckID = data["deck_id"]
-
+        cannotDoubleDown();
 
         if (betAmount > balance) {
           betAmount = balance;
@@ -275,7 +302,7 @@ $(document).ready(function() {
             $.get("https://deckofcardsapi.com/api/deck/" + deckID + "/draw/?count=1", function(oneCard) {
               var oneCardDrawn = oneCard["cards"];
               disableButton($(".doubleDownButton"));
-              $(".gameMessageText").text("HIT OR STAY");
+              $(".gameMessageText").text("Hit or Stay");
               dealPlayerCards(oneCardDrawn);
               handleNewPlayerCard();
             });
