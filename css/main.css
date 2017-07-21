@@ -15,17 +15,17 @@
 
 .title{
   color: #6EB43F;
-  font-size: 40px;
+  font-size: 5.5vh;
   margin-top: 1vh;
   position: relative;
   font-family: 'Quicksand', sans-serif;
 }
 
 .titleSlogan{
-  padding-left: 1.1%;
+  padding-left: 0.9%;
   color: white;
-  font-size: 20px;
-  margin-top: -3.4vh;
+  font-size: 2.5vh;
+  margin-top: -2.6vh;
   position: relative;
   font-family: 'Quicksand', sans-serif;
 }
@@ -38,7 +38,7 @@
 .dealerTitle{
   height:3.5vh;
   color: white;
-  font-size: 18px;
+  font-size: 2.5vh;
   width: 100%;
   text-align: center;
   font-family: 'Quicksand', sans-serif;
@@ -53,7 +53,7 @@
   background-color: #292829;
   color: white;
   width: 12%;
-  font-size: 26px;
+  font-size: 2.8vh;
   padding-left: 1%;
   padding-right: 1%;
   padding-top: .7%;
@@ -77,8 +77,8 @@
 
 
 .dealerCard {
-  height: 200px;
-  width:150px;
+  height: 28vh;
+  width:21vh;
   position: relative;
   top:3.5vh;
   display: inline-block;
@@ -126,7 +126,7 @@
 .userTitle{
   height:3.6vh;
   color: white;
-  font-size: 18px;
+  font-size: 2.5vh;
   width: 100%;
   text-align: center;
   font-family: 'Quicksand', sans-serif;
@@ -145,7 +145,7 @@
 
 .balanceText{
   color:white;
-  font-size: 16px;
+  font-size: 2vh;
   padding-top: 2.5vh;
   margin-left: -4%;
 }
@@ -168,7 +168,7 @@
 }
 
 .betText{
-  font-size: 14px;
+  font-size: 1.8vh;
   padding-top: 2.7vh;
   margin-left: -4%;
 }
@@ -194,7 +194,7 @@
     display: block;
     height:6.45vh;
     margin-left: -8%;
-    font-size: 16px;
+    font-size: 2.5vh;
 }
 
 .btn-group button:not(:last-child) {
@@ -212,8 +212,8 @@
 }
 
 .playerCard {
-  height: 200px;
-  width:150px;
+  height: 28vh;
+  width:21vh;
   position: relative;
   display: inline-block;
   margin-left: 12px;

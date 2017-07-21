@@ -60,7 +60,7 @@ $(document).ready(function() {
     }
   }
 
-  function enableOnlyBet(){
+  function enableOnlyBet() {
     disableButton($(".hitButton"));
     disableButton($(".stayButton"));
     disableButton($(".doubleDownButton"));
@@ -80,6 +80,46 @@ $(document).ready(function() {
       $(".betText").text("Bet Amount: $" + betAmount);
     }
   })
+
+  // var mouseIsDown = false;
+  //
+  // function incrementValue() {
+  //   if (betAmount < balance) {
+  //     betAmount += 10;
+  //     if (mouseIsDown) {
+  //       $(".betText").text("Bet Amount: $" + betAmount);
+  //       setTimeout(incrementValue, 1000);
+  //     }
+  //   }
+  // }
+  //
+  // $('.increaseBet').mousedown(function() {
+  //   mouseIsDown = true;
+  //   incrementValue();
+  // });
+  //
+  // $('.increaseBet').mouseup(function() {
+  //   mouseIsDown = false;
+  // });
+  //
+  // function decrementValue() {
+  //   if (betAmount > 10) {
+  //     betAmount -= 10;
+  //     if (mouseIsDown) {
+  //       $(".betText").text("Bet Amount: $" + betAmount);
+  //       setTimeout(decrementValue, 1000);
+  //     }
+  //   }
+  // }
+  //
+  // $('.decreaseBet').mousedown(function() {
+  //   mouseIsDown = true;
+  //   decrementValue();
+  // });
+  //
+  // $('.decreaseBet').mouseup(function() {
+  //   mouseIsDown = false;
+  // });
 
   function handleNewPlayerCardImage(cardImage) {
     $('<img />').attr({
@@ -103,7 +143,7 @@ $(document).ready(function() {
     }).appendTo('.dealerCards');
   }
 
-  function resetPotValue(){
+  function resetPotValue() {
     potValue = 0;
     $(".amountInPlay").text("Amount Bet: $" + potValue);
   }
@@ -113,8 +153,8 @@ $(document).ready(function() {
     $(".dealerCard").remove();
   }
 
-  function isEndOfGame(){
-    if(balance === 0){
+  function isEndOfGame() {
+    if (balance === 0) {
       $(".gameMessageText").text("You chose...poorly");
       $(".dealerCards").append('<div class = "gameOverButton">Game Over. Click to play again</div>')
       disableButton($(".hitButton"));
@@ -137,8 +177,8 @@ $(document).ready(function() {
     }
   }
 
-  function cannotDoubleDown(){
-    if(balance < potValue){
+  function cannotDoubleDown() {
+    if (balance < potValue) {
       disableButton($(".doubleDownButton"));
     }
   }
@@ -154,7 +194,7 @@ $(document).ready(function() {
     balance -= betAmount;
     $(".balanceText").text("Current Balance: $" + balance);
 
-    if(balance < potValue){
+    if (balance < potValue) {
       $(".gameMessageText").text("Hit or Stay");
     }
   }
@@ -164,6 +204,7 @@ $(document).ready(function() {
     $(".gameMessageText").text("BLACKJACK!!!");
     balance += (1.1 * (potValue * 2));
     $(".balanceText").text("Current Balance: $" + balance);
+    resetPotValue();
   }
 
   $(window).load(function() {
@@ -194,7 +235,7 @@ $(document).ready(function() {
           resetPotValue();
           enableOnlyBet();
           isEndOfGame();
-        } else if (dealerHandValue === playerHandValue){
+        } else if (dealerHandValue === playerHandValue) {
           $(".gameMessageText").text("Push");
           balance += potValue;
           $(".balanceText").text("Current Balance: $" + balance);
@@ -202,13 +243,13 @@ $(document).ready(function() {
           enableOnlyBet();
         } else if (dealerHandValue < playerHandValue && dealerHandValue > 16) {
           $(".gameMessageText").text("You Win!");
-          balance += (potValue*2);
+          balance += (potValue * 2);
           $(".balanceText").text("Current Balance: $" + balance);
           resetPotValue();
           enableOnlyBet();
         } else if (dealerHandValue > 21) {
           $(".gameMessageText").text("Dealer Bust. You Win!");
-          balance += (potValue*2);
+          balance += (potValue * 2);
           $(".balanceText").text("Current Balance: $" + balance);
           resetPotValue();
           enableOnlyBet();
